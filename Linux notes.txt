@@ -1,0 +1,214 @@
+Linux notes
+
+pwd =print working directory
+uname = Linux
+myname= Srija Swaroopa
+ls- prints all available files/directories in list 
+cd=change directory (cd Downloads)
+To come back to a directory cd ../
+To go to a specific path cd /home/srijaswaroopa/Downloads
+To go to home cd ~
+To create a file - touch file11
+To create a folder - mkdir newfolder
+Multiple files creation at a time- touch f1 f2 f3 f4 f5
+Multiple folders at a time- mkdir n1 n2 n3 n4 n5
+To move to a folder- cd n3
+To clear commands- clear or ctrl+L
+To delete- rm f1
+Deletes everything that starts from f- rm f*
+moves one file to another- mv f4 /home/srijaswaroopa/Desktop
+To see the status of file/folder- stat f3
+To see the status of file/folder in the form of long list(shortform)- ls -l f3
+Something deleted from command line cannot be found in recycle bin also
+Will be deleted only if the folder is empty- rmdir n5 
+if the file is not empty- rm -r n2
+To display what is present in the file- cat f1.txt
+edit command- nano f1.txt
+To copy - cp f1.txt nw1.txt
+
+Everything is a File/directory in Linux
+Linux is multiuser OS
+
+sudo - super user (telling that we are administrator)
+bin
+sbin > new user 
+etc > useradd.conf
+mnt- mounting 
+opt- third party applications
+snap- operates/executes without effecting OS
+sys- system related info
+tmp- temporary directory
+
+Files/directories permissions
+if only hyphen exits then it is a file
+if d exixts then it is a directory
+l> link 
+
+first3 = user
+second3= group
+third3 = Everyone
+
+Changing file permissions
+r = read = 4 
+w = write = 2 
+x = execute = 1
+chmod- change mode
+Ex: chmod +x f1.txt (giving execute permission for f1 file)
+chmod -w n1  (removes write permission for n1)
+To grant all permissions- chmod 777 f1.txt (4+2+1=7)
+To remove all permissions- chmod 000 f1.txt
+
+Getting HELP from terminal
+To get the manual for a command -  man ls
+ch+Tab gives all commands that start with ch
+apropos - can be used when we dont know anything about command (EX: apropos copy)
+
+Wild card
+
+* > case sensitive
+? > ls write?
+[] > ls write[123]
+
+Redirection 
+
+Pipe and grep
+Pipe - to pass two or more commands symbol = |
+cat copy.txt | head  4 (prints first 4 names from copy.txt file)
+cat copy.txt | tail -4 (prints last  4 names from copy.txt file)
+cat copy.txt | wc -l (prints no of words = wc= wordcount)
+Grep - Global search for regular expression & printout
+grep "Nexon" cars.txt (checks and prints if there is Nexon present in cars.txt)
+grep "Nexon" cars.txt -n (-n used to print in which lines the Nexon is present)
+grep "Nexon" cars.txt -v (-v is used when we need all other items except mentioned[Nexon]) v is for viewing
+grep "ford" cars.txt  -i (-i is used to print the given item without being case sensitive )
+tee command or >> is used to copy to another file
+cat cars.txt | grep "Ford" | tee copied.txt | wc
+
+Multiuser OS
+Adding new users to OS
+sudo adduser balayya
+sudo usermod -aG dip balayya (adding balayya to dip group from admin pythonlife)
+userdel -r balayya (deleting balayya user from root pythonlife)
+
+Installation of softwares/packages
+sudo apt update  (updates the syntaxes)
+sudo apt-get update
+sudo apt install htop
+sudo apt upgrade (system update)
+
+Text editing
+nano - nano tesing.txt
+vi
+vim
+
+System logs
+Debian Aerchitechture
+ifconfig - To know the ip address of the system (ip a)
+loopback(lo) = localhost
+ifconfig -a (inactive)
+sudo ifconfig lo down
+changes are not permanent(restarts after reboot)
+
+Package management
+Repository= online server
+sudo apt autoremove
+Resource viewing
+$ - not as toot
+# - as root
+
+df - disk free (shows how much storage is available and how much is used)
+du - disk usafe ()
+-h - human understandable
+du -s storage
+free (shows amount of storage present, used and free)
+
+shell scripting
+BASH- born again shell
+Autoation of repetitive task
+creating files with .sh
+#! /usr/bin/bash
+echo "pythonlife first shell"   (To print smth on command line)
+./first.sh (prints smth that is present in first.sh)
+
+Variables and comments
+bash-interpreted - scripting
+#  - comments
+ls -al (to view permissions for that file)
+There are two types of variables in bash
+-system variable
+Ex: pwd,ls,cat
+-user defined variable
+$PWD ($ prints the location of PWD like /home/pythonlife/Desktop)
+read wanted (read is used to take input and wanted is var name)
+read -p 'what you want to print' wanted 
+read -sp 'what you want to print' wanted  (-sp enables us to type something that is not visible while typing)
+echo "${just[1]}"  (array)
+default variable - reply
+
+Conditional statements
+
+if [ condition ];
+then
+.....
+....
+elif [ condition]
+.....
+else
+.....
+fi  (must be ended with fi)
+
+-gt (greater than)
+-eq (equal to)
+-ne (not equal to)
+-ge (greater than equal)
+-lt (less than)
+-le (less than or equal to)
+
+Logical operator
+And &&
+or ||
+
+Loops
+for loop
+for i in range {1..10};
+do
+....
+...
+...
+done
+while loop
+while [ condition ]
+do
+....
+....
+done
+
+real time Task
+create sam folder
+repeat 3
+last 3rd file we need to enter text
+text display
+
+#! /usr/bin/bash
+echo "we are doing a task"
+read num
+a=0
+while [ "$a" -le "$num" ]
+do
+currentdir=$PWD
+echo "$currentdir"
+mkdir sam
+cd
+sam
+touch f{1..10}.txt
+a=$((a+1));
+echo "complete"
+done
+vi f3.txt
+echo "success"
+echo " "
+echo "Here is what you have written"
+cat f3.txt
+fi
+
+
